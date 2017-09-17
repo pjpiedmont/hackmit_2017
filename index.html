@@ -1,15 +1,58 @@
 <!doctype html>
 
 <html>
-    <head>
-        <title>News Bias Analyzer</title>
-    </head>
+	<head>
+		<title>News Accuracy Analyzer</title>
 
-    <body>
+		<link rel="stylesheet" href="bootstrap/css/master.css">
+		<link rel="stylesheet" href="styles.css">
+	</head>
 
-        <input type="text" name="url" id="url">
-        
-        <span id="accuracy"></span>
+	<body>
 
-    </body>
+		<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<span class="navbar-brand" href="#">News Accuracy Analyzer</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+					  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Link</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">Disabled</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
+			</div>
+		</nav> -->
+
+		<h1>News Accuracy Analyzer</h1>
+
+		<p>
+			This application analyzes the accuracy of news articles. Enter the URL or plaintext of your article below and find out how accurate it is.
+		</p>
+
+		<form>
+			<div class="row">
+				<div class="col">
+					<input type="text" class="form-control" placeholder="URL">
+					<textarea class="form-control" placeholder="Text"></textarea>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+				<div class="col">
+					<span>Estimated accuracy: <span id="accuracy"></span></span>
+				</div>
+			</div>
+		</form>
+
+	</body>
 </html>
