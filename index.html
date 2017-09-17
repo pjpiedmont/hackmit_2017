@@ -10,25 +10,30 @@
 
 	<body>
 
-		<h1>News Accuracy Analyzer</h1>
+		<header>
+			<h1>News Accuracy Analyzer</h1>
+			<h2>Find out how accurate a news article is. Enter the URL or plaintext below to get an estimate.</h2>
+		</header>
 
-		<p>
-			This application analyzes the accuracy of news articles. Enter the URL or plaintext of your article below and find out how accurate it is.
-		</p>
+		<section>
 
-		<form id="check_accuracy" method="POST">
-			{% csrf_token %}
-			<div class="row">
-				<div class="col">
-					<input type="text" class="form-control" placeholder="URL" name="url" id="url">
-					<textarea class="form-control" placeholder="Text" name="text" id="text"></textarea>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</div>
-				<div class="col">
-					<span>Estimated accuracy: <span id="accuracy"></span></span>
-				</div>
+			<div class="row" id="results">
+				<span>Estimated accuracy: <span id="accuracy"></span></span>
 			</div>
-		</form>
+
+			<form id="check_accuracy" method="POST" autocomplete="off">
+				<div class="row">
+					<!-- <div class="col-lg-4"> -->
+						<input type="text" class="form-control" placeholder="URL" name="url" id="url">
+						<textarea class="form-control" placeholder="Text" name="text" id="text"></textarea>
+						<button type="submit" class="btn btn-primary">SUBMIT</button>
+					<!-- </div> -->
+					<!-- <div class="col-lg-8"> -->
+					<!-- </div> -->
+				</div>
+			</form>
+
+		</section>
 
 		<script
 		src="https://code.jquery.com/jquery-3.2.1.min.js"

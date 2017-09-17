@@ -10,12 +10,14 @@ $("#check_accuracy").submit(function(e) {
 		type: "POST",
 		url: "/analyze",
 		data: {
+			csrfmiddlewaretoken: '{{ csrf_token }}',
 			address: document.getElementById('url').value,
 			text: document.getElementById('text').value
 		},
 
-		success: function() {
-			console.log("success");
+		success: function(res) {
+			$("#accuracy").html(res);
+			$("#results").css("height", "100px");
 		}
 	})
 })
