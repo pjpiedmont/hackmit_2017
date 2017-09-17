@@ -13,7 +13,8 @@ form {
 }
 
 input,
-textarea {
+textarea,
+button {
     margin-bottom: 25px;
 }
 

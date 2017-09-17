@@ -16,7 +16,8 @@
 			This application analyzes the accuracy of news articles. Enter the URL or plaintext of your article below and find out how accurate it is.
 		</p>
 
-		<form id="check_accuracy">
+		<form id="check_accuracy" method="POST">
+			{% csrf_token %}
 			<div class="row">
 				<div class="col">
 					<input type="text" class="form-control" placeholder="URL" name="url" id="url">
