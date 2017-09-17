@@ -7,6 +7,11 @@ Created on Sat Sep 16 16:14:19 2017
 
 from paddleWrapper import getSentimentDictionary, getSentiment
 import string
+import random
+import csv
+random.seed(0)
+
+
 
 # Create instance of object.
 # Call vectorizeArticle. Pass in the entire article as a string.
@@ -48,8 +53,31 @@ class vectorize:
             self.__featureset.append(float(numSentiments) / numSentences)
         except ZeroDivisionError:
             print("Error. No strings to parse.")
-        
-test = vectorize()
-vector = test.vectorizeArticle('Donald Trump asserted that he is powerful because his policies are fantastic. According to her, the police entered at 5 PM.')
-print('Expected result: 0.5')
-print('Actual result: ' + str(vector[1]))
+
+def getFake():   
+    
+    fakes = open('fake.csv')
+    reader = csv.reader(fakes)
+    for line in reader:
+        yield line[5] # the element containing the article text
+    
+def getReal():
+    pass
+
+            
+def test():    
+    def test_generator():
+        while True:
+            articleType = random.choice([0,1])
+            if(articleType == 0):
+                articleText = getFake()
+            else:
+                articleText = getReal()
+            featureVector = vectorize.vectorizeArticle(articleText)
+            yield featureVector, articleType
+    return test_generator
+
+def train():
+    def train_generator():
+        pass
+    return train_generator
