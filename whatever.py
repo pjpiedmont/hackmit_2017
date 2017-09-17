@@ -5,48 +5,34 @@ Created on Sat Sep 16 16:14:19 2017
 @author: kyler
 """
 
-import numpy as np
 
-# Returns value between 0 and 1 based on Gaussian Distribution.
-# Center of Gaussian curve is "shift"; val is input
-def gaussian(val, shift):
-    return np.exp((-(val - shift))**2)
+# Create instance of object.
+# Call vectorizeArticle. Pass in the entire article as a string.
+    # sentimentFct should accept a string and return the 3-tuple of sentiment values
+# vectorizeArticle returns the vector of the article.
 
-
-class BiasDeterminer:
+class vectorize:
     def __init__(self):
-        # Order of Attributes: QuotationFrequency, SentimentFrequency, 
-        self.__weights = [0.2, 0.5, 0.3]
-        self.__attributes = [0.0, 0.0, 0.0]     # Always initialized to 0.0
+        # Order of FeatureSet: QuotationFrequency, SentimentFrequency, 
+        self.__featureset = []
         
-    def runAnalyis(self, articleStr):
+    def vectorizeArticle(self, articleStr, sentimentFct):
         # Perform Tests
-        self.calcQuoteScore(2, articleStr)          # CHANGE OPTIMAL FREQUENCY TO SOMETHING MEANINGFUL HERE!!!!!!!  
-        
-        # Return
-        return self.calcScore()
-    
-    def calcScore(self):
-        totalScore = 0.0        
-        for score in range(len(self.__weights)):
-            totalScore += self.__weights[score] * self.__attributes[score]
-        return totalScore
+        self.calcQuoteF(articleStr)
+        self.calcSentimentF(articleStr, sentimentFct)
+        return self.__featureset;
     
     def calcQuoteF(self, articleStr):
-        return float(articleStr.count("\"")) / len(articleStr)
-    
-    # Use Gaussian Distribution to determine score [0,1]
-    # Optimal Frequency     
-    def calcQuoteScore(self, optimal_f, articleStr):
-        f = self.calcQuoteF(articleStr)
-        self.__attributes[0] = gaussian(f, optimal_f)
+        self.__featureset.append(float(articleStr.count("\"")) / len(articleStr))
      
-    #   UNIMPLEMENTED!!!!!!!!!!!!!!!!! 
-    def calcSentimentF(self, articleStr): 
-        self.__attributes = 1.0
-        
-    def cal
-        
-        
-Peter = BiasDeterminer()
-print Peter.
+    def calcSentimentF(self, articleStr, fct):    
+        numSentiments = 0
+        sentenceList = articleStr.split('\n')
+        for sentence in sentenceList:
+            if (len(sentence) > 1):         # in case of ellipses (...)
+                sentence.append('.')
+                sentimentVals = fct(sentence)       # Returns 3-tuple of probabilities of negative, neutral, positive respectively
+                # If the highest probability is NOT 'neutral'
+                if (sentimentVals.index(max(sentimentVals))) != 1:
+                    numSentiments += 1
+        return float(numSentiments) / len(sentenceList)
