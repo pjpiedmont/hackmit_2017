@@ -35,7 +35,7 @@ form {
   margin: auto; }
 
 textarea {
-  height: calc(100% - 126px);
+  height: calc(100% - (126px - 38px - 25px));
   resize: none; }
   textarea:focus {
     border-color: #29B6F6 !important; }
@@ -61,6 +61,10 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: height 0.5s ease; }
+  #results span {
+    font-size: 25px;
+    display: block;
+    text-align: center; }
 
 #container {
   width: 200px;

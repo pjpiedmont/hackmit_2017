@@ -45,7 +45,7 @@ form {
 }
 
 textarea {
-    height: calc(100% - 126px);
+    height: calc(100% - (126px - 38px - 25px));
     resize: none;
 
     &:focus {
@@ -82,6 +82,12 @@ button {
     transform: translate(-50%, -50%);
 
     transition: height 0.5s ease;
+
+    span {
+        font-size: 25px;
+        display: block;
+        text-align: center;
+    }
 }
 
 #container {
