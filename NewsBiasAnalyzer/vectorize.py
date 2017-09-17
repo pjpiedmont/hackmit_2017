@@ -29,7 +29,7 @@ class vectorize:
      
     def calcSentimentF(self, articleStr):    
         numSentiments = 0
-        sentenceList = articleStr.split('\n')
+        sentenceList = articleStr.split('  asasdasdasd')
         Dict = getSentimentDictionary('word_dict.txt')
         for sentence in sentenceList:
             if (len(sentence) > 1):         # in case of ellipses (...)
@@ -37,14 +37,16 @@ class vectorize:
                 keyList = []                
                 for word in wordList:
                     if word in Dict:
-                        keyList.append(Dict[word])    
+                        keyList.append(int(Dict[word]))
+                print(keyList)
                 sentimentVals = getSentiment(keyList)       # Returns 2-tuple of probabilities of positive, negative respectively                
+                print(sentimentVals)                
                 thresholdDifference = 0.2
                 if (abs(sentimentVals[0] - sentimentVals[1]) > thresholdDifference):
                     numSentiments += 1
         return float(numSentiments) / len(sentenceList)
         
 test = vectorize()
-vector = test.vectorizeArticle('My name is kyler. I like cookies.')
+vector = test.vectorizeArticle(r'I will be in Huntsville, Alabama, on Saturday night to support Luther Strange for Senate. "Big Luther" is a great guy who gets things done!')
 print('Expected result: 0.5')
-print('Actual result:' + vector[1])
+print('Actual result:' + str(vector))
