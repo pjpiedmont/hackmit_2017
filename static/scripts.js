@@ -1,20 +1,23 @@
 $("#check_accuracy").submit(function(e) {
 	e.preventDefault();
-	
-	alert("hello");
 
-	var $form = $(this);
-	var url = "/analyze";
+	// var data = {
+	// 	address: document.getElementById('url').value,
+	// 	text: document.getElementById('text').value
+	// }
 
-	alert("world");
+	$.ajax({
+		type: "POST",
+		url: "/analyze",
+		data: {
+			csrfmiddlewaretoken: '{{ csrf_token }}',
+			address: document.getElementById('url').value,
+			text: document.getElementById('text').value
+		},
 
-	var posting = $.post(url,
-	{
-		address: document.getElementById('url').value,
-		text: document.getElementById('text').value
-	});
-
-	posting.done(function(data) {
-		alert("posted");
+		success: function(res) {
+			$("#accuracy").html(res);
+			$("#results").css("height", "100px");
+		}
 	})
 })
