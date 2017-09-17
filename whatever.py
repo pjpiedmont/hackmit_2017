@@ -13,7 +13,7 @@ Created on Sat Sep 16 16:14:19 2017
 
 class vectorize:
     def __init__(self):
-        # Order of FeatureSet: QuotationFrequency, SentimentFrequency, 
+        # Order of FeatureSet: QuotationFrequency, SentimentFrequency... 
         self.__featureset = []
         
     def vectorizeArticle(self, articleStr, sentimentFct):
@@ -31,8 +31,8 @@ class vectorize:
         for sentence in sentenceList:
             if (len(sentence) > 1):         # in case of ellipses (...)
                 sentence.append('.')
-                sentimentVals = fct(sentence)       # Returns 3-tuple of probabilities of negative, neutral, positive respectively
-                # If the highest probability is NOT 'neutral'
-                if (sentimentVals.index(max(sentimentVals))) != 1:
+                sentimentVals = fct(sentence)       # Returns 2-tuple of probabilities of positive, negative respectively
+                thresholdDifference = 0.2
+                if (abs(sentimentVals[0] - sentimentVals[1]) > thresholdDifference):
                     numSentiments += 1
         return float(numSentiments) / len(sentenceList)
