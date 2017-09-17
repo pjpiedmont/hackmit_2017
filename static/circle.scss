@@ -1,13 +1,16 @@
 $circle-size: 300px;
-$circle-background: #D9D9D9;
+$circle-background: transparent;
 $circle-color: #1291D4;
 $inset-size: 250px;
-$inset-color: #fbfbfb;
-$transition-length: 1s;
+$inset-color: #29B6F6;
+$transition-length: 2s;
+$easing: ease-out;
 
 @keyframes color {
 	0% {background-color: #f00;}
+	25% {background-color: #FF9100;}
 	50% {background-color: #ff0;}
+	75% {background-color: #88FF00;}
 	100% {background-color: #0f0;}
 }
 
@@ -15,7 +18,7 @@ $transition-length: 1s;
 	animation-name: color;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
-	animation-timing-function: linear;
+	animation-timing-function: $easing;
 }
 
 .ko-progress-circle {
@@ -30,7 +33,7 @@ $transition-length: 1s;
 			height:   $circle-size;
 			position: absolute;
 			-webkit-backface-visibility: hidden;
-			transition: transform $transition-length;
+			transition: transform $transition-length $easing;
 			border-radius: 50%;
 		}
 		.ko-progress-circle__slice {

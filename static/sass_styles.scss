@@ -8,6 +8,15 @@ body {
 header {
     text-align: center;
     padding: 60px 50px;
+    position: relative;
+
+    div {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 header,
@@ -31,11 +40,12 @@ section {
 
 form {
     width: 75%;
+    height: 100%;
     margin: auto;
 }
 
 textarea {
-    height: 250px;
+    height: calc(100% - 126px);
 
     &:focus {
         border-color: #29B6F6 !important;
@@ -45,11 +55,6 @@ textarea {
 textarea,
 input {
     border-radius: 0 !important;
-}
-
-textarea,
-input,
-button {
     margin-bottom: 25px;
 }
 
@@ -69,6 +74,11 @@ button {
     // height: 0px;
     // visibility: hidden;
     overflow: hidden;
+    // margin: 100px 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     transition: height 0.5s ease;
 }
@@ -76,4 +86,32 @@ button {
 #container {
     width: 200px;
     height: 200px;
+}
+
+#percent {
+    background: transparent !important;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+
+    transform: translate(-50%, -50%);
+}
+
+#hidden {
+    overflow: hidden;
+    visibility: hidden;
+    background: #29B6F6;
+    color: #fff;
+    transition: all 1s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+
+    &.visible {
+        opacity: 1;
+    }
 }

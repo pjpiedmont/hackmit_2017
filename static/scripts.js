@@ -1,20 +1,20 @@
-function drawCircle() {	
-	var circle = new ProgressBar.Circle('#container', {
-		color: '#FCB03C',
-		text: {
-				value: '50'
+var drawCircle2 = function(num) {
+	// var num = Math.floor(Math.random() * 100);
+	$("#hidden").addClass('visible');
+	$("body").css("overflow", "hidden");
+	setTimeout(function() {
+		$('.ko-progress-circle__fill').addClass('animate');
+		$('.ko-progress-circle').attr('data-progress', num);
+		var numAnim = new CountUp("percent", 0, num);
+		if (!numAnim.error) {
+			numAnim.start();
+		} else {
+			console.error(numAnim.error);
 		}
-	});
-	console.log("draw");
-	circle.animate(0.5);  // Number from 0.0 to 1.0
-}
-
-var drawCircle2 = function() {
-	$('.ko-progress-circle__fill').addClass('animate');
-	$('.ko-progress-circle').attr('data-progress', Math.floor(Math.random() * 100));
+	}, 500);
 	setTimeout(function() {
 		$('.ko-progress-circle__fill').css("animation-play-state", "paused");
-	}, 1000);
+	}, 2500);
 }
 // setTimeout(window.randomize, 200);
 // $('.ko-progress-circle').click(window.randomize);
@@ -43,10 +43,23 @@ $("#check_accuracy").submit(function(e) {
 			// 	"visibility" : "visible"
 			// });
 			console.log(res);
-			drawCircle2();
+			drawCircle2(res);
 			// setTimeout(function() {
 			// 	$('.ko-progress-circle .ko-progress-circle__slice .ko-progress-circle__fill').css("animation-play-state", "paused");
 			// }, 1000);
 		}
 	})
+})
+
+function headerHeight() {
+	height = $(window).height();
+	$("header, section").css("height", height + "px");
+}
+
+$(document).ready(function() {
+	headerHeight();
+})
+
+$(window).resize(function() {
+	headerHeight();
 })
