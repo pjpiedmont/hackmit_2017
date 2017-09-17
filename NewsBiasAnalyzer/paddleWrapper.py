@@ -11,3 +11,7 @@ def getSentimentDictionary(filePath):
 def getSentiment(wordList):
     r = requests.post('http://127.0.0.1:8001', json = {"word": wordList} )
     return r.json()['data'][0]
+
+def getError(featureVector):
+    r = requests.post('http://127.0.0.1:8002', json = {"word": featureVector} )
+    return r.json()['data'][0]
