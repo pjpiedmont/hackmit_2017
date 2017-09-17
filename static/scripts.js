@@ -31,8 +31,7 @@ $("#check_accuracy").submit(function(e) {
 		type: "POST",
 		url: "/analyze",
 		data: {
-			csrfmiddlewaretoken: '{{ csrf_token }}',
-			address: document.getElementById('url').value,
+			url: document.getElementById('url').value,
 			text: document.getElementById('text').value
 		},
 
