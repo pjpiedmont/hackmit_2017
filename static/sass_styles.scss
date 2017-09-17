@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import 'circle.css';
+
+body {
+    font-family: 'Raleway';
+}
+
+header {
+    text-align: center;
+    padding: 60px 50px;
+}
+
+header,
+button {
+    background: #29B6F6 !important;
+    color: #fff !important;
+}
+
+h1 {
+    font-size: 75px;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+section {
+    padding: 100px;
+}
+
+form {
+    width: 75%;
+    margin: auto;
+}
+
+textarea {
+    height: 250px;
+
+    &:focus {
+        border-color: #29B6F6 !important;
+    }
+}
+
+textarea,
+input {
+    border-radius: 0 !important;
+}
+
+textarea,
+input,
+button {
+    margin-bottom: 25px;
+}
+
+button {
+    width: 100%;
+    box-shadow: none !important;
+    border: 1px solid #29B6F6 !important;
+    border-radius: 0 !important;
+
+    &:focus {
+        background: #fff !important;
+        color: #29B6F6 !important;
+    }
+}
+
+#results {
+    // height: 0px;
+    // visibility: hidden;
+    overflow: hidden;
+
+    transition: height 0.5s ease;
+}
+
+#container {
+    width: 200px;
+    height: 200px;
+}

@@ -18,7 +18,19 @@
 		<section>
 
 			<div class="row" id="results">
-				<span>Estimated accuracy: <span id="accuracy"></span></span>
+				<!-- <div id="container"></div> -->
+				<div class="ko-progress-circle" data-progress="0">
+					<div class="ko-circle">
+						<div class="full ko-progress-circle__slice">
+							<div class="ko-progress-circle__fill"></div>
+						</div>
+						<div class="ko-progress-circle__slice">
+							<div class="ko-progress-circle__fill"></div>
+							<div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+						</div>
+					</div>
+					<div class="ko-progress-circle__overlay"></div>
+				</div>
 			</div>
 
 			<form id="check_accuracy" method="POST" autocomplete="off">
@@ -40,7 +52,15 @@
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 		crossorigin="anonymous"></script>
 
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script> -->
+		
+		<!-- <script src="static/raphael.js"></script> -->
+		<!-- <script src="static/mootools-yui-compressed.js"></script> -->
+
+		<script src="static/progressbar.js"></script>
+
 		<script src="static/scripts.js"></script>
+		<script src="static/animation.js"></script>
 
 	</body>
 </html>

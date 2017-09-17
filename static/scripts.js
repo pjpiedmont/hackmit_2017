@@ -1,3 +1,24 @@
+function drawCircle() {	
+	var circle = new ProgressBar.Circle('#container', {
+		color: '#FCB03C',
+		text: {
+				value: '50'
+		}
+	});
+	console.log("draw");
+	circle.animate(0.5);  // Number from 0.0 to 1.0
+}
+
+var drawCircle2 = function() {
+	$('.ko-progress-circle__fill').addClass('animate');
+	$('.ko-progress-circle').attr('data-progress', Math.floor(Math.random() * 100));
+	setTimeout(function() {
+		$('.ko-progress-circle__fill').css("animation-play-state", "paused");
+	}, 1000);
+}
+// setTimeout(window.randomize, 200);
+// $('.ko-progress-circle').click(window.randomize);
+
 $("#check_accuracy").submit(function(e) {
 	e.preventDefault();
 
@@ -16,8 +37,16 @@ $("#check_accuracy").submit(function(e) {
 		},
 
 		success: function(res) {
-			$("#accuracy").html(res);
-			$("#results").css("height", "100px");
+			// $("#accuracy").html(res);
+			// $("#results").css({
+			// 	"height" : "100px",
+			// 	"visibility" : "visible"
+			// });
+			console.log(res);
+			drawCircle2();
+			// setTimeout(function() {
+			// 	$('.ko-progress-circle .ko-progress-circle__slice .ko-progress-circle__fill').css("animation-play-state", "paused");
+			// }, 1000);
 		}
 	})
 })

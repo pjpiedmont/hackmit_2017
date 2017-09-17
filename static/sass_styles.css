@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
-@import url(circle.css);
 body {
   font-family: 'Raleway'; }
 
@@ -50,11 +49,9 @@ button {
     color: #29B6F6 !important; }
 
 #results {
+  height: 0px;
+  visibility: hidden;
   overflow: hidden;
   transition: height 0.5s ease; }
 
-#container {
-  width: 200px;
-  height: 200px; }
-
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=sass_styles.css.map */
