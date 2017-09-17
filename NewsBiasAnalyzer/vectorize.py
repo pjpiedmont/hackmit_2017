@@ -9,6 +9,7 @@ from paddleWrapper import getSentimentDictionary, getSentiment
 import string
 import random
 import csv
+import os
 random.seed(0)
 
 
@@ -44,7 +45,8 @@ class vectorize:
                 for word in wordList:
                     if word in Dict:
                         keyList.append(int(Dict[word]))    
-                sentimentVals = getSentiment(keyList)       # Returns 2-tuple of probabilities of positive, negative respectively                
+#                sentimentVals = getSentiment(keyList)       # Returns 2-tuple of probabilities of positive, negative respectively                
+                sentimentVals = [0,1]
                 thresholdDifference = 0.5
                 if (abs(sentimentVals[0] - sentimentVals[1]) > thresholdDifference):
                     numSentiments += 1
@@ -62,22 +64,39 @@ def getFake():
         yield line[5] # the element containing the article text
     
 def getReal():
-    pass
-
+    for file in os.listdir("bbc"):
+        if file.endswith(".txt"):
+            openF = open(file, "r")
+            yield openF.read()
             
 def test():    
     def test_generator():
+        fake = getFake()
+        real = getReal()
         while True:
             articleType = random.choice([0,1])
             if(articleType == 0):
-                articleText = getFake()
+                articleText = next(fake)
             else:
-                articleText = getReal()
-            featureVector = vectorize.vectorizeArticle(articleText)
-            yield featureVector, articleType
+                articleText = next(real)
+            v = vectorize()
+            featureVector = v.vectorizeArticle(articleText)
+            print(featureVector)
+            yield featureVector#, articleType
     return test_generator
 
 def train():
-    def train_generator():
-        pass
-    return train_generator
+    def test_generator():
+        fake = getFake()
+        real = getReal()
+        while True:
+            articleType = random.choice([0,1])
+            if(articleType == 0):
+                articleText = next(fake)
+            else:
+                articleText = next(real)
+            v = vectorize()
+            featureVector = v.vectorizeArticle(articleText)
+            print(featureVector)
+            yield featureVector#, articleType
+    return test_generator

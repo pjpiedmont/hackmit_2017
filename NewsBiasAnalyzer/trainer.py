@@ -63,10 +63,10 @@ def main():
     # training
     trainer.train(
         reader=paddle.batch(
-            paddle.reader.shuffle(vectorize.train(), buf_size=500),
+            paddle.reader.shuffle(vectorize.train(), buf_size=500), #should be .train()
             batch_size=2),
         feeding=feeding,
-        event_handler=event_handler,
+#        event_handler=event_handler,
         num_passes=30)
 
     # inference
