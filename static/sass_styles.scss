@@ -45,7 +45,7 @@ form {
 }
 
 textarea {
-    height: calc(100% - 126px);
+    height: calc(100% - (126px - 38px - 25px));
     resize: none;
 
     &:focus {

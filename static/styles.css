@@ -35,7 +35,7 @@ form {
   margin: auto; }
 
 textarea {
-  height: calc(100% - 126px);
+  height: calc(100% - (126px - 38px - 25px));
   resize: none; }
   textarea:focus {
     border-color: #29B6F6 !important; }
