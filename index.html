@@ -41,11 +41,11 @@
 			This application analyzes the accuracy of news articles. Enter the URL or plaintext of your article below and find out how accurate it is.
 		</p>
 
-		<form>
+		<form id="check_accuracy" method="post">
 			<div class="row">
 				<div class="col">
-					<input type="text" class="form-control" placeholder="URL">
-					<textarea class="form-control" placeholder="Text"></textarea>
+					<input type="text" class="form-control" placeholder="URL" name="url" id="url">
+					<textarea class="form-control" placeholder="Text" name="text" id="text"></textarea>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 				<div class="col">
@@ -53,6 +53,13 @@
 				</div>
 			</div>
 		</form>
+
+		<script
+		src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous"></script>
+
+		<script src="scripts.js"></script>
 
 	</body>
 </html>
