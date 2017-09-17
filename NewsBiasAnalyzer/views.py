@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-import random
+import NewsBiasAnalyzer.vectorize as vectorize
 
 def index(request):
     indexFile = open("index.html")
@@ -8,6 +8,6 @@ def index(request):
 
 @csrf_exempt
 def analyze(request):
-    print("yo")
-    response = random.randrange(0, 101)
+    v = vectorize.vectorize()
+    response = v.getValue(request.POST.get('text'))
     return HttpResponse(response)

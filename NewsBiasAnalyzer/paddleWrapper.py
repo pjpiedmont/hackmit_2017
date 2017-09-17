@@ -13,5 +13,5 @@ def getSentiment(wordList):
     return r.json()['data'][0]
 
 def getError(featureVector):
-    r = requests.post('http://127.0.0.1:8002', json = {"word": featureVector} )
-    return r.json()['data'][0]
+    r = requests.post('http://127.0.0.1:8002', json = {'x': featureVector} )
+    return ((r.json()['data'][0][0])*100) // 1

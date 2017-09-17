@@ -5,12 +5,11 @@ Created on Sat Sep 16 16:14:19 2017
 @author: kyler
 """
 
-from paddleWrapper import getSentimentDictionary, getSentiment
+from NewsBiasAnalyzer.paddleWrapper import getSentimentDictionary, getSentiment, getError
 import string
 import random
 import csv
 import os
-import numpy as np
 random.seed(0)
 
 
@@ -24,6 +23,10 @@ class vectorize:
     def __init__(self):
         # Order of FeatureSet: QuotationFrequency, SentimentFrequency... 
         self.__featureset = []
+
+    def getValue(self, articleStr):
+        featureVector = self.vectorizeArticle(articleStr)
+        return getError(featureVector)
         
     def vectorizeArticle(self, articleStr):
         # Perform Tests
@@ -41,7 +44,7 @@ class vectorize:
         numSentiments = 0
         numSentences = 0
         sentenceList = articleStr.split('.')
-        Dict = getSentimentDictionary('word_dict.txt')
+        Dict = getSentimentDictionary('static/word_dict.txt')
         keyList = []
         for sentence in sentenceList:
             if (len(sentence) > 1):         # in case of ellipses (...)
@@ -109,7 +112,6 @@ def tester():
         except:
             break
         v = vectorize()
-        featureVector = np.array(v.vectorizeArticle(articleText))
         #print((featureVector,articleType))
         yield featureVector,[articleType]
             
