@@ -61,6 +61,10 @@ button {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: height 0.5s ease; }
+  #results span {
+    font-size: 25px;
+    display: block;
+    text-align: center; }
 
 #container {
   width: 200px;
