@@ -28,6 +28,7 @@ $easing: ease-out;
 
 	background-color: $circle-background;
 	border-radius: 50%;
+	border: 1px solid #fff;
 		.ko-progress-circle__slice, .ko-progress-circle__fill {
 			width:    $circle-size;
 			height:   $circle-size;
