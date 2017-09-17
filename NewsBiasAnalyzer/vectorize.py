@@ -6,7 +6,7 @@ Created on Sat Sep 16 16:14:19 2017
 """
 
 from paddleWrapper import getSentimentDictionary, getSentiment
-import re
+import string
 
 # Create instance of object.
 # Call vectorizeArticle. Pass in the entire article as a string.
@@ -29,24 +29,27 @@ class vectorize:
      
     def calcSentimentF(self, articleStr):    
         numSentiments = 0
-        sentenceList = articleStr.split('  asasdasdasd')
+        numSentences = 0
+        sentenceList = articleStr.split('.')
         Dict = getSentimentDictionary('word_dict.txt')
         for sentence in sentenceList:
             if (len(sentence) > 1):         # in case of ellipses (...)
-                wordList = re.sub("[^\w]", " ", sentence).split()
+                wordList = [word.strip(string.punctuation) for word in sentence.split()]
                 keyList = []                
                 for word in wordList:
                     if word in Dict:
-                        keyList.append(int(Dict[word]))
-                print(keyList)
+                        keyList.append(int(Dict[word]))    
                 sentimentVals = getSentiment(keyList)       # Returns 2-tuple of probabilities of positive, negative respectively                
-                print(sentimentVals)                
-                thresholdDifference = 0.2
+                thresholdDifference = 0.5
                 if (abs(sentimentVals[0] - sentimentVals[1]) > thresholdDifference):
                     numSentiments += 1
-        return float(numSentiments) / len(sentenceList)
+                numSentences += 1
+        try:
+            self.__featureset.append(float(numSentiments) / numSentences)
+        except ZeroDivisionError:
+            print("Error. No strings to parse.")
         
 test = vectorize()
-vector = test.vectorizeArticle(r'I will be in Huntsville, Alabama, on Saturday night to support Luther Strange for Senate. "Big Luther" is a great guy who gets things done!')
+vector = test.vectorizeArticle('Donald Trump asserted that he is powerful because his policies are fantastic. According to her, the police entered at 5 PM.')
 print('Expected result: 0.5')
-print('Actual result:' + str(vector))
+print('Actual result: ' + str(vector[1]))
