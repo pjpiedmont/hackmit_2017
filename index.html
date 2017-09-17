@@ -11,18 +11,18 @@
 	<body>
 
 		<header>
-			<h1>News Accuracy Analyzer</h1>
-			<h2>Find out how accurate a news article is. Enter the URL or plaintext below to get an estimate.</h2>
+			<div>
+				<h1>News Accuracy Analyzer</h1>
+				<h2>Find out how accurate a news article is. Enter the URL or plaintext below to get an estimate.</h2>
+			</div>
 		</header>
 
-		<section>
+		<section id="input">
 
-			<div class="row" id="results">
-				<span>Estimated accuracy: <span id="accuracy"></span></span>
-			</div>
+			<!--  -->
 
 			<form id="check_accuracy" method="POST" autocomplete="off">
-				<div class="row">
+				<!-- <div class="row"> -->
 					<!-- <div class="col-lg-4"> -->
 						<input type="text" class="form-control" placeholder="URL" name="url" id="url">
 						<textarea class="form-control" placeholder="Text" name="text" id="text"></textarea>
@@ -30,8 +30,28 @@
 					<!-- </div> -->
 					<!-- <div class="col-lg-8"> -->
 					<!-- </div> -->
-				</div>
+				<!-- </div> -->
 			</form>
+
+		</section>
+
+		<section id="hidden">
+
+			<div id="results">
+					<div class="ko-progress-circle" data-progress="0">
+						<div class="ko-circle">
+							<div class="full ko-progress-circle__slice">
+								<div class="ko-progress-circle__fill"></div>
+							</div>
+							<div class="ko-progress-circle__slice">
+								<div class="ko-progress-circle__fill"></div>
+								<div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+							</div>
+						</div>
+						<div class="ko-progress-circle__overlay"></div>
+					</div>
+					<div id="percent"></div>
+				</div>
 
 		</section>
 
@@ -40,7 +60,17 @@
 		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 		crossorigin="anonymous"></script>
 
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script> -->
+		
+		<!-- <script src="static/raphael.js"></script> -->
+		<!-- <script src="static/mootools-yui-compressed.js"></script> -->
+
+		<!-- <script src="static/progressbar.js"></script> -->
+
+		<script src="static/countUp.js"></script>
+
 		<script src="static/scripts.js"></script>
+		<!-- <script src="static/animation.js"></script> -->
 
 	</body>
 </html>

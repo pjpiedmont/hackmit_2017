@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import 'circle.css';
+
+body {
+    font-family: 'Raleway';
+}
+
+header {
+    text-align: center;
+    padding: 60px 50px;
+    position: relative;
+
+    div {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+header,
+button {
+    background: #29B6F6 !important;
+    color: #fff !important;
+}
+
+h1 {
+    font-size: 75px;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+section {
+    padding: 100px;
+}
+
+form {
+    width: 75%;
+    height: 100%;
+    margin: auto;
+}
+
+textarea {
+    height: calc(100% - 126px);
+    resize: none;
+
+    &:focus {
+        border-color: #29B6F6 !important;
+    }
+}
+
+textarea,
+input {
+    border-radius: 0 !important;
+    margin-bottom: 25px;
+}
+
+button {
+    width: 100%;
+    box-shadow: none !important;
+    border: 1px solid #29B6F6 !important;
+    border-radius: 0 !important;
+
+    &:focus {
+        background: #fff !important;
+        color: #29B6F6 !important;
+    }
+}
+
+#results {
+    // height: 0px;
+    // visibility: hidden;
+    overflow: hidden;
+    // margin: 100px 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    transition: height 0.5s ease;
+}
+
+#container {
+    width: 200px;
+    height: 200px;
+}
+
+#percent {
+    background: transparent !important;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+
+    transform: translate(-50%, -50%);
+}
+
+#hidden {
+    overflow: hidden;
+    visibility: hidden;
+    background: #29B6F6;
+    color: #fff;
+    transition: all 1s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+
+    &.visible {
+        opacity: 1;
+    }
+}

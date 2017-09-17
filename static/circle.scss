@@ -1,0 +1,186 @@
+$circle-size: 300px;
+$circle-background: transparent;
+$circle-color: #1291D4;
+$inset-size: 250px;
+$inset-color: #29B6F6;
+$transition-length: 2s;
+$easing: ease-out;
+
+@keyframes color {
+	0% {background-color: #f00;}
+	25% {background-color: #FF9100;}
+	50% {background-color: #ff0;}
+	75% {background-color: #88FF00;}
+	100% {background-color: #0f0;}
+}
+
+.animate {
+	animation-name: color;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+	animation-timing-function: $easing;
+}
+
+.ko-progress-circle {
+	margin: 20px auto;
+	width:  $circle-size;
+	height: $circle-size;
+
+	background-color: $circle-background;
+	border-radius: 50%;
+	border: 1px solid #fff;
+		.ko-progress-circle__slice, .ko-progress-circle__fill {
+			width:    $circle-size;
+			height:   $circle-size;
+			position: absolute;
+			-webkit-backface-visibility: hidden;
+			transition: transform $transition-length $easing;
+			border-radius: 50%;
+		}
+		.ko-progress-circle__slice {
+			clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
+			.ko-progress-circle__fill {
+				clip: rect(0px, $circle-size/2, $circle-size, 0px);
+				background-color: $circle-background;
+			}
+	}
+	.ko-progress-circle__overlay {
+		width:       $inset-size;
+		height:      $inset-size;
+		position:    absolute;
+		margin-left: ($circle-size - $inset-size)/2;
+		margin-top:  ($circle-size - $inset-size)/2;
+
+		background-color: $inset-color;
+		border-radius: 50%;
+	}
+
+	$i: 0;
+	$increment: 180deg / 100;
+	@while $i <= 100 {
+		&[data-progress='#{$i}'] {
+			.animate {
+				animation-duration: $transition-length / ($i/100);
+			}
+			.ko-progress-circle__slice.full, .ko-progress-circle__fill {
+				transform: rotate($increment * $i);
+			}	
+			.ko-progress-circle__fill.ko-progress-circle__bar {
+				transform: rotate($increment * $i * 2);
+			}
+      $i: $i + 1;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+// .radial-progress {
+// 	$circle-size: 120px;
+// 	$circle-background: #d6dadc;
+// 	$circle-color: #97a71d;
+// 	$inset-size: 90px;
+// 	$inset-color: #fbfbfb;
+// 	$transition-length: 1s;
+// 	$shadow: 6px 6px 10px rgba(0,0,0,0.2);
+// 	$percentage-color: #97a71d;
+// 	$percentage-font-size: 22px;
+// 	$percentage-text-width: 57px;
+
+// 	margin: 50px;
+// 	width:  $circle-size;
+// 	height: $circle-size;
+
+// 	background-color: $circle-background;
+// 	border-radius: 50%;
+// 	.circle {
+// 		.mask, .fill, .shadow {
+// 			width:    $circle-size;
+// 			height:   $circle-size;
+// 			position: absolute;
+// 			border-radius: 50%;
+// 		}
+// 		.shadow {
+// 			box-shadow: $shadow inset;
+// 		}
+// 		.mask, .fill {
+// 			-webkit-backface-visibility: hidden;
+// 			transition: -webkit-transform $transition-length;
+// 			transition: -ms-transform $transition-length;
+// 			transition: transform $transition-length;
+// 			border-radius: 50%;
+// 		}
+// 		.mask {
+// 			clip: rect(0px, $circle-size, $circle-size, $circle-size/2);
+// 			.fill {
+// 				clip: rect(0px, $circle-size/2, $circle-size, 0px);
+// 				background-color: $circle-color;
+// 			}
+// 		}
+// 	}
+// 	.inset {
+// 		width:       $inset-size;
+// 		height:      $inset-size;
+// 		position:    absolute;
+// 		margin-left: ($circle-size - $inset-size)/2;
+// 		margin-top:  ($circle-size - $inset-size)/2;
+
+// 		background-color: $inset-color;
+// 		border-radius: 50%;
+// 		box-shadow: $shadow;
+// 		.percentage {
+// 			height:   $percentage-font-size;
+// 			width:    $percentage-text-width;
+// 			overflow: hidden;
+
+// 			position: absolute;
+// 			top:      ($inset-size - $percentage-font-size) / 2;
+// 			left:     ($inset-size - $percentage-text-width) / 2;
+
+// 			line-height: 1;
+// 			.numbers {
+// 				margin-top: -$percentage-font-size;
+// 				transition: width $transition-length;
+// 				span {
+// 					width:          $percentage-text-width;
+// 					display:        inline-block;
+// 					vertical-align: top;
+// 					text-align:     center;
+// 					font-weight:    800;
+// 					font-size:      $percentage-font-size;
+// 					font-family:    "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+// 					color:          $percentage-color;
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	$i: 0;
+// 	$increment: 180deg / 100;
+// 	@for $i from 0 through 100 {
+// 		&[data-progress="#{$i}"] {
+// 			.circle {
+// 				.mask.full, .fill {
+// 					-webkit-transform: rotate($increment * $i);
+// 					-ms-transform: rotate($increment * $i);
+// 					transform: rotate($increment * $i);
+// 				}	
+// 				.fill.fix {
+// 					-webkit-transform: rotate($increment * $i * 2);
+// 					-ms-transform: rotate($increment * $i * 2);
+// 					transform: rotate($increment * $i * 2);
+// 				}
+// 			}
+// 			.inset .percentage .numbers {
+// 				width: $i * $percentage-text-width + $percentage-text-width;
+// 			}
+// 		}
+// 	}
+// }
