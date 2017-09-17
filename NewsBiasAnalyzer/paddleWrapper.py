@@ -1,5 +1,4 @@
 import requests
-import json
 
 def getSentimentDictionary(filePath):
     d = {}
